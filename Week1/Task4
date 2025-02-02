@@ -1,0 +1,97 @@
+ import java.io.*;
+import java.util.*;
+
+class User implements Serializable {
+  private static final long serialVersionUID = 1L;
+    private String name;
+    private String email;
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Email: " + email;
+    }
+}
+
+class UserManager {
+    private List<User> users;
+
+    public UserManager() {
+        users = new ArrayList<>();
+    }
+
+    public void addUser(String name, String email) {
+        User user = new User(name, email);
+        users.add(user);
+    }
+
+    public void saveUsersToFile(String filename) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(users);
+            System.out.println("User details saved to file: " + filename);
+        } catch (IOException e) {
+            System.out.println("Error saving to file: " + e.getMessage());
+        }
+    }
+
+    public void loadUsersFromFile(String filename) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            users = (List<User>) ois.readObject();
+            System.out.println("User details loaded from file: " + filename);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading from file: " + e.getMessage());
+        }
+    }
+
+    public void displayUsers() {
+        if (users.isEmpty()) {
+            System.out.println("No users to display.");
+        } else {
+            for (User user : users) {
+                System.out.println(user);
+            }
+        }
+    }
+}
+
+public class Task4 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        UserManager userManager = new UserManager();
+
+        System.out.println("Welcome to the User Manager System!");
+        System.out.print("Enter the number of users to add: ");
+        int numUsers = scanner.nextInt();
+        scanner.nextLine(); 
+
+        for (int i = 0; i < numUsers; i++) {
+            System.out.print("\nEnter your name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Enter your email: ");
+            String email = scanner.nextLine();
+
+            userManager.addUser(name, email);
+        }
+
+        userManager.saveUsersToFile("File1");
+        userManager.loadUsersFromFile("File1");
+
+        System.out.println("\nLoaded User List:");
+        userManager.displayUsers();
+
+        scanner.close();
+    }
+}
