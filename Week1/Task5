@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+class StringProcessor {
+    
+    public String reverseString(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+
+    public int countOccurrences(String text, String sub) {
+        int count = 0, index = 0;
+        while ((index = text.indexOf(sub, index)) != -1) {
+            count++;
+            index += sub.length();
+        }
+        return count;
+    }
+
+    public String splitAndCapitalize(String str) {
+        String[] words = str.split("\\s+");
+        StringBuilder capitalizedStr = new StringBuilder();
+        
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                capitalizedStr.append(Character.toUpperCase(word.charAt(0)))
+                              .append(word.substring(1))
+                              .append(" ");
+            }
+        }
+        return capitalizedStr.toString().trim();
+    }
+}
+
+public class Task5 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        StringProcessor processor = new StringProcessor();
+        
+        System.out.print("Enter a string to reverse: ");
+        String inputString = scanner.nextLine();
+        System.out.println("Reversed String: " + processor.reverseString(inputString));
+        
+        System.out.print("\nEnter the main text: ");
+        String mainText = scanner.nextLine();
+        System.out.print("Enter the substring to count: ");
+        String subText = scanner.nextLine();
+        System.out.println("Occurrences of '" + subText + "': " + processor.countOccurrences(mainText, subText));
+        
+        System.out.print("\nEnter a sentence to split and capitalize: ");
+        String sentence = scanner.nextLine();
+        System.out.println("Formatted String: " + processor.splitAndCapitalize(sentence));
+        
+        scanner.close();
+    }
+}
+
