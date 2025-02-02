@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class Task9 {
+
+    public static void analyzeLogFile(String inputFile, String outputFile) throws IOException {
+        List<String> keywords = Arrays.asList("ERROR", "WARNING");
+        Map<String, Integer> keywordCount = new HashMap<>();
+        for (String keyword : keywords) {
+            keywordCount.put(keyword, 0);
+        }
+
+        // Read the input log file line by line
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Check each keyword and increment its count if found in the line
+                for (String keyword : keywords) {
+                    if (line.contains(keyword)) {
+                        keywordCount.put(keyword, keywordCount.get(keyword) + 1);
+                    }
+                }
+            }
+        }
+
+        // Write the analysis results to the output file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+            writer.write("Log File Analysis Report\n");
+            writer.write("------------------------\n");
+            for (String keyword : keywords) {
+                writer.write(keyword + ": " + keywordCount.get(keyword) + "\n");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // Input and output file paths
+        String inputFile = "C:/Users/child of god/Documents/log.txt";  
+        String outputFile = "C:/Users/child of god/Documents/log_analysis_report.txt"; 
+        try {
+            analyzeLogFile(inputFile, outputFile);
+            System.out.println("Log file analysis complete. Results written to " + outputFile);
+        } catch (IOException e) {
+            System.err.println("Error analyzing log file: " + e.getMessage());
+        }
+    }
+}
+
