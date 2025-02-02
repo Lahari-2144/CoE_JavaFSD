@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+class Task3 {
+
+    public static void processInput() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter a number to calculate its reciprocal: ");
+        
+        try {
+            double num = scanner.nextDouble();
+            
+            if (num == 0) {
+                throw new ArithmeticException("Cannot calculate reciprocal of zero.");
+            }
+            
+            double reciprocal = 1 / num;
+            System.out.println("Reciprocal of " + num + " is " + reciprocal);
+        } catch (java.util.InputMismatchException e) {
+            System.out.println("Invalid input! Please enter a valid number.");
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Thank you for using the program.");
+        }
+    }
+
+    public static void main(String[] args) {
+        processInput();
+    }
+}
