@@ -1,0 +1,109 @@
+import java.util.*;
+
+class Task {
+    private String id;
+    private String description;
+    private int priority;
+
+    public Task(String id, String description, int priority) {
+        this.id = id;
+        this.description = description;
+        this.priority = priority;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Task[ID=" + id + ", Description=" + description + ", Priority=" + priority + "]";
+    }
+}
+
+class TaskManager {
+    private PriorityQueue<Task> taskQueue;
+    private Map<String, Task> taskMap;
+
+    public TaskManager() {
+        taskQueue = new PriorityQueue<>(Comparator.comparingInt(Task::getPriority).reversed());
+        taskMap = new HashMap<>();
+    }
+
+    public void addTask(String id, String description, int priority) {
+        if (taskMap.containsKey(id)) {
+            System.out.println("Task ID already exists!");
+            return;
+        }
+        Task task = new Task(id, description, priority);
+        taskQueue.offer(task);
+        taskMap.put(id, task);
+        System.out.println("Task added: " + task);
+    }
+
+    public void removeTask(String id) {
+        Task task = taskMap.remove(id);
+        if (task != null) {
+            taskQueue.remove(task);
+            System.out.println("Task removed: " + task);
+        } else {
+            System.out.println("Task ID not found!");
+        }
+    }
+
+    public Task getHighestPriorityTask() {
+        return taskQueue.peek();
+    }
+}
+
+public class Task1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TaskManager manager = new TaskManager();
+
+        System.out.print("Enter number of tasks to add: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Task ID: ");
+            String id = scanner.nextLine();
+            System.out.print("Enter Task Description: ");
+            String description = scanner.nextLine();
+            System.out.print("Enter Task Priority: ");
+            int priority = scanner.nextInt();
+            scanner.nextLine();
+
+            manager.addTask(id, description, priority);
+        }
+
+        Task highestPriorityTask = manager.getHighestPriorityTask();
+        if (highestPriorityTask != null) {
+            System.out.println("Highest Priority Task: " + highestPriorityTask);
+        } else {
+            System.out.println("No tasks available.");
+        }
+
+        System.out.print("Enter Task ID to remove: ");
+        String removeId = scanner.nextLine();
+        manager.removeTask(removeId);
+
+        highestPriorityTask = manager.getHighestPriorityTask();
+        if (highestPriorityTask != null) {
+            System.out.println("Updated Highest Priority Task: " + highestPriorityTask);
+        } else {
+            System.out.println("No tasks available.");
+        }
+
+        scanner.close();
+    }
+}
+
