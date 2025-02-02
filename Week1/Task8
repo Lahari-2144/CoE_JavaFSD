@@ -1,0 +1,64 @@
+import java.util.*;
+
+public class Task8 {
+
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        TreeNode(int val) {
+            this.val = val;
+            left = null;
+            right = null;
+        }
+    }
+
+    public static String serialize(TreeNode root) {
+        if (root == null) return "#";
+        return root.val + "," + serialize(root.left) + "," + serialize(root.right);
+    }
+
+    public static TreeNode deserialize(String data) {
+        Queue<String> queue = new ArrayDeque<>(); // Using ArrayDeque instead of LinkedList
+        String[] values = data.split(",");
+        for (String value : values) {
+            queue.offer(value);
+        }
+        return deserializeHelper(queue);
+    }
+
+    private static TreeNode deserializeHelper(Queue<String> queue) {
+        String value = queue.poll();
+        if (value.equals("#")) return null;
+
+        TreeNode node = new TreeNode(Integer.parseInt(value));
+        node.left = deserializeHelper(queue);
+        node.right = deserializeHelper(queue);
+        return node;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter root value: ");
+        int rootVal = scanner.nextInt();
+        TreeNode root = new TreeNode(rootVal);
+
+        System.out.print("Enter left child value of " + rootVal + ": ");
+        int leftVal = scanner.nextInt();
+        root.left = new TreeNode(leftVal);
+
+        System.out.print("Enter right child value of " + rootVal + ": ");
+        int rightVal = scanner.nextInt();
+        root.right = new TreeNode(rightVal);
+
+        String serializedTree = serialize(root);
+        System.out.println("Serialized tree: " + serializedTree);
+
+        TreeNode deserializedRoot = deserialize(serializedTree);
+        System.out.println("Tree has been deserialized.");
+
+        scanner.close();
+    }
+}
+
