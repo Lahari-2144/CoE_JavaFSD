@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Task7 {
+    public static List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+        if (s.length() < p.length()) return result;
+
+        int[] pFreq = new int[26]; 
+        int[] sFreq = new int[26]; 
+
+        for (char c : p.toCharArray()) {
+            pFreq[c - 'a']++;  
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            sFreq[s.charAt(i) - 'a']++;  
+
+            if (i >= p.length() - 1) { // Corrected condition to include last window
+                if (Arrays.equals(pFreq, sFreq)) {  
+                    result.add(i - p.length() + 1);
+                }
+                sFreq[s.charAt(i - p.length() + 1) - 'a']--; // Move window
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the main string (s): ");
+        String s = scanner.nextLine();
+        
+        System.out.print("Enter the pattern string (p): ");
+        String p = scanner.nextLine();
+        
+        List<Integer> indices = findAnagrams(s, p);
+        
+        System.out.println("Starting indices of anagrams: " + indices);
+        
+        scanner.close();
+    }
+}
+
