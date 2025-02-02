@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+class BankAccount {
+    private double balance;
+
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    public synchronized void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount + ", New Balance: " + balance);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    public synchronized void withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount + ", New Balance: " + balance);
+        } else if (amount > balance) {
+            System.out.println("Insufficient funds for withdrawal.");
+        } else {
+            System.out.println("Invalid withdrawal amount.");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+class BankTransaction extends Thread {
+    private BankAccount account;
+    private boolean isDeposit;
+    private double amount;
+
+    public BankTransaction(BankAccount account, boolean isDeposit, double amount) {
+        this.account = account;
+        this.isDeposit = isDeposit;
+        this.amount = amount;
+    }
+
+    @Override
+    public void run() {
+        if (isDeposit) {
+            account.deposit(amount);
+        } else {
+            account.withdraw(amount);
+        }
+    }
+}
+
+public class Task2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter initial balance: ");
+        double initialBalance = scanner.nextDouble();
+        BankAccount account = new BankAccount(initialBalance);
+
+        System.out.print("Enter number of transactions to simulate: ");
+        int numTransactions = scanner.nextInt();
+
+        for (int i = 0; i < numTransactions; i++) {
+            System.out.print("Enter transaction type (1 for deposit, 2 for withdrawal): ");
+            int transactionType = scanner.nextInt();
+
+            System.out.print("Enter amount: ");
+            double amount = scanner.nextDouble();
+
+            BankTransaction transaction = new BankTransaction(account, transactionType == 1, amount);
+            transaction.start();
+        }
+
+        scanner.close();
+    }
+}
