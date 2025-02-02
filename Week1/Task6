@@ -1,0 +1,96 @@
+ import java.util.HashSet;
+import java.util.Scanner;
+
+class LinkedList {
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    private Node head;
+
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    public void createCycle(int position) {
+        if (position < 1) return;
+
+        Node temp = head, cycleNode = null;
+        int count = 1;
+
+        while (temp.next != null) {
+            if (count == position) {
+                cycleNode = temp;
+            }
+            temp = temp.next;
+            count++;
+        }
+        if (cycleNode != null) {
+            temp.next = cycleNode;
+            System.out.println("Cycle created at position: " + position);
+        }
+    }
+
+    public boolean hasCycle(Node head) {
+        if (head == null) return false;
+
+        Node slow = head, fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Node getHead() {
+        return head;
+    }
+}
+
+public class Task6 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+
+        System.out.print("Enter the number of elements in the linked list: ");
+        int n = scanner.nextInt();
+
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            int value = scanner.nextInt();
+            list.insert(value);
+        }
+
+        System.out.print("Enter the position to create a cycle (0 for no cycle): ");
+        int cyclePos = scanner.nextInt();
+        if (cyclePos > 0) {
+            list.createCycle(cyclePos);
+        }
+
+        boolean hasCycle = list.hasCycle(list.getHead());
+        System.out.println("Cycle detected: " + hasCycle);
+
+        scanner.close();
+    }
+}
+
