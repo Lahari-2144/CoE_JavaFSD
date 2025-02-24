@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro E-Magazine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>E-Magazine</h1>
+        <nav>
+            <ul>
+                <li><a href="#" class="category" data-category="latest">Latest</a></li>
+                <li><a href="#" class="category" data-category="technology">Technology</a></li>
+                <li><a href="#" class="category" data-category="sports">Sports</a></li>
+                <li><a href="#" class="category" data-category="entertainment">Entertainment</a></li>
+            </ul>
+        </nav>
+        <input type="text" id="search" placeholder="Search articles...">
+    </header>
+
+    <main>
+        <section id="featured">
+            <h1>Breaking News</h1>
+            <div class="featured-article">
+                <img src="image1.jpg" alt="Breaking News">
+                
+            </div>
+        </section>
+        <section id = "Breaking News">
+            <h2>Breaking News: Tech Advances in AI</h2>
+            <p>AI is transforming industries at an unprecedented pace...</p>
+        </section>
+
+        <section id="articles">
+            <h2>Latest Articles</h2>
+            <div class="article-list"></div>
+        </section>
+
+        <section id="multimedia">
+            <h2>Multimedia</h2>
+            <div class="media-container">
+                <video controls src="https://www.w3schools.com/html/mov_bbb.mp4" width="100%"></video>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
