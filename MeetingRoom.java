@@ -1,6 +1,4 @@
 import java.util.*;
-
-// Enum to define room features
 enum RoomFeature {
     PROJECTOR,
     VIDEO_CONFERENCING,
@@ -9,7 +7,6 @@ enum RoomFeature {
     AIR_CONDITIONING
 }
 
-// MeetingRoom class
  class MeetingRoom {
     private String roomId;
     private String roomName;
@@ -41,7 +38,6 @@ enum RoomFeature {
     }
 }
 
-// RoomScheduler class
 class RoomScheduler {
     private Map<String, MeetingRoom> rooms;
 
@@ -75,7 +71,6 @@ class RoomScheduler {
     }
 }
 
-// Main class to test the implementation
 public class MeetingRoomBookingSystem {
     public static void main(String[] args) {
         RoomScheduler scheduler = new RoomScheduler();
