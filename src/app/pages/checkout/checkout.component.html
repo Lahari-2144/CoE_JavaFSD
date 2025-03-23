@@ -1,0 +1,21 @@
+<h2>Checkout</h2>
+
+<div *ngIf="cart.length > 0">
+  <h3>Order Summary</h3>
+  <div class="cart-item" *ngFor="let item of cart">
+    <h4>{{ item.name }}</h4>
+    <p>Quantity: {{ item.quantity }}</p>
+    <p>Price: ${{ item.price }}</p>
+  </div>
+  <h3>Total: ${{ totalAmount }}</h3>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="name" placeholder="Full Name">
+    <input type="email" formControlName="email" placeholder="Email">
+    <input type="text" formControlName="address" placeholder="Address">
+    <input type="text" formControlName="phone" placeholder="Phone Number">
+    <button type="submit" [disabled]="checkoutForm.invalid">Place Order</button>
+  </form>
+</div>
+
+<p *ngIf="cart.length === 0">Your cart is empty.</p>
