@@ -1,0 +1,48 @@
+.home-container {
+    text-align: center;
+  }
+  
+   .banner {
+    background: url('/assets/banner2.webp') no-repeat center center/cover;
+    color: rgb(249, 244, 244);
+    padding: 100px 100px;
+  } 
+  /* .banner {
+    background-image: url('/assets/banner.jpg'); 
+    background-size: cover;  
+    background-position: center; 
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 700px;  
+  } */
+  
+  
+  .shop-now-btn {
+    background: rgb(247, 83, 211);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .categories {
+    margin-top: 30px;
+  }
+  
+  .category-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .category-item {
+    text-align: center;
+  }
+  
+  .category-item img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+  }
+  

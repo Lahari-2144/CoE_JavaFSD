@@ -1,0 +1,61 @@
+ <div class="contact-container">
+    <h2>Contact Us</h2>
+    <p>Email: support&#64;angelstore.com</p>
+    <p>Phone: +91 98765 43210</p>
+    <div class="contact-image">
+      <img src="http://localhost:8090/angelstore.webp" alt="Angel Store Chennai">
+    </div>
+    <div class="contact-content">
+      <p>We would love to hear from you! Whether you have questions about our products, need assistance with an order, or just want to say hello, feel free to reach out.</p>
+      <p>Our support team is available 24/7 to assist you with any inquiries.</p>
+      <p>Visit our stores in Chennai and Hyderabad or contact us via email or phone.</p>
+    </div> 
+    
+  
+    <h3>Our Location</h3>
+    <!-- <h5>street no.12,2nd street,pondy bazaar,Tnagar</h5>
+    <img src="http://localhost:8090/chennai.jpeg" />
+    <h5>street no.17,26th cross street,ameerpet,Hyderabad</h5>
+    <img src="http://localhost:8090/hyd.jpeg" /> -->
+    <div class="location-container">
+      <div class="location">
+        <p><strong>Chennai</strong></p>
+        <p>street no.12, 2nd street, Pondy bazaar ,  T Nagar, Chennai</p>
+        <p>Phone: +91 98765 43210</p>
+        <img src="http://localhost:8090/chennai.jpeg" alt="Chennai Location">
+      </div>
+  
+      <div class="location">
+        <p><strong>Hyderabad</strong></p>
+        <p>street no.17, 26th cross street, Charminar , Hyderabad</p>
+        <p>Phone: +91 98765 43220</p>
+  
+        <img src="http://localhost:8090/hyd.jpeg" alt="Hyderabad Location">
+      </div>
+    </div>
+
+
+
+    <h3>Send us a message</h3>
+    <!-- <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div> -->
+  <form (ngSubmit)="submitEnquiry()">
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="newEnquiry.name" name="name" required />
+  
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="newEnquiry.email" name="email" required />
+  
+    <label>Message:</label>
+    <textarea [(ngModel)]="newEnquiry.message" name="message" required></textarea>
+  
+    <button type="submit">Send</button>
+  </form>
+  <p *ngIf="submitted">Thank you! We will get back to you soon.</p>
+  
+  

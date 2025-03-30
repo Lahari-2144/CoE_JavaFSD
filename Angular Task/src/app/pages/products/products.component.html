@@ -1,0 +1,20 @@
+
+  <!-- <div class="product-card" *ngFor="let product of products">
+    <img [src]="product.image" alt="{{product.name}}"/>
+    <h3>{{ product.name }}</h3>
+    <p>Price: ₹{{ product.price }}</p>
+    <p>Price: {{ product.price | currencyFormat }}</p>
+    <button (click)="addToWishlist(product)">Add to Wishlist</button>
+    <button (click)="addToCart(product)">Add to Cart</button>
+  </div> -->
+  
+  <div class="products-container">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="product.image" alt="{{ product.name }}" />
+      <h3>{{ product.name }}</h3>
+      <p>Price: {{ product.price | currencyFormat }}</p>
+      <button (click)="addToCart(product)">Add to Cart</button>
+      <button (click)="addToWishlist(product)">❤️ Wishlist</button>
+    </div>
+  </div>
+  

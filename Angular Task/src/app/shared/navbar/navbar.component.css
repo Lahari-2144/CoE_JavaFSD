@@ -1,0 +1,46 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     background-color: #880c96; /* Dark Purple */
+    /* background: linear-gradient(45deg, #FFD700, #B8860B, #8B6508); */
+    /* background: linear-gradient(to right, #000000, #FFD700); */
+    /* background: radial-gradient(circle, #1a1a1a, #000000); */
+    /* background: linear-gradient(135deg, #222, #444, #FFD700, #555); */
+    padding: 15px 20px; 
+  }
+
+  
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.3s;
+  }
+  
+  .nav-links a:hover {
+    background-color: white;
+    color: #4b0082;
+    border-radius: 5px;
+  }
+  

@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Cosmetics Collection</h2>
+    <div class="product-list">
+      <div *ngFor="let product of cosmeticProducts" class="product-card">
+        <img [src]="product.image" [alt]="product.name">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.price | currency }}</p>
+        <button (click)="addToCart(product)">Add to Cart</button>
+        <button (click)="addToWishlist(product)">♥</button>
+      </div>
+    </div>
+  </div>
+  

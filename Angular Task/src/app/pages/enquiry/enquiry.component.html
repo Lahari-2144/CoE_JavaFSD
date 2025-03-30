@@ -1,0 +1,35 @@
+<!-- <h2>Contact Us</h2>
+
+<form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" placeholder="Your Name">
+  <input type="email" formControlName="email" placeholder="Your Email">
+  <textarea formControlName="message" placeholder="Your Message"></textarea>
+  <button type="submit" [disabled]="enquiryForm.invalid">Submit</button>
+</form>
+
+<p *ngIf="submitted">Thank you! We will get back to you soon.</p> -->
+<h2>Enquiries</h2>
+
+<!-- Enquiry Form -->
+<form (ngSubmit)="submitEnquiry()">
+  <label>Name:</label>
+  <input type="text" [(ngModel)]="newEnquiry.name" name="name" required />
+
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="newEnquiry.email" name="email" required />
+
+  <label>Message:</label>
+  <textarea [(ngModel)]="newEnquiry.message" name="message" required></textarea>
+
+  <button type="submit">Submit</button>
+</form>
+<p *ngIf="submitted">Thank you! We will get back to you soon.</p>
+<!-- Enquiries List -->
+ <!-- <h3>Previous Enquiries</h3>
+<ul>
+  <li *ngFor="let enquiry of enquiries">
+    <strong>{{ enquiry.name }}</strong> ({{ enquiry.email }})<br>
+    {{ enquiry.message }}
+  </li>
+</ul> -->
+

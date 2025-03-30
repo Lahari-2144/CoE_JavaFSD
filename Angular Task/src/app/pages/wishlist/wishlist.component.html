@@ -1,0 +1,10 @@
+<div *ngIf="wishlist.length > 0">
+    <div class="wishlist-item" *ngFor="let item of wishlist">
+      <img [src]="item.image" alt="{{item.name}}">
+      <h3>{{ item.name }}</h3>
+      <p>Price: ${{ item.price }}</p>
+      <button (click)="removeFromWishlist(item.id)">Remove</button>
+    </div>
+  </div>
+  <p *ngIf="wishlist.length === 0">Your wishlist is empty.</p>
+  

@@ -1,0 +1,47 @@
+.contact-container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  button {
+    background: gold;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  .contact-container {
+    text-align: center;
+  }
+  
+  .location-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adds spacing between locations */
+    margin-top: 20px;
+  }
+  
+  .location {
+    width: 300px;
+    text-align: center;
+  }
+  
+  .location img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .contact-image img {
+    max-width: 300px;
+    border-radius: 10px;
+  }
+  
+  
